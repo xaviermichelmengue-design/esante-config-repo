@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xaviermichelmengue-design/esante-config-repo
+          default-label: main
+          skip-ssl-validation: true
+          clone-on-start: true
+          force-pull: true
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://esante-registry:8761/eureka/

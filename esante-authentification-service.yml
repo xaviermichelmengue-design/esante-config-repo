@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://esante-postgres:5432/auth_db
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://esante-registry:8761/eureka/
+
+jwt:
+  secret: mySecretKey
+  expiration: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
