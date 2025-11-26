@@ -16,3 +16,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://esante-registry:8761/eureka/
+
+# Configuration CORS globale
+cors:
+  allowed-origins: "http://localhost:3000"
+  allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+  allowed-headers: "*"
+  allow-credentials: true

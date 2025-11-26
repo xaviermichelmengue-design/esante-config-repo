@@ -5,95 +5,15 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      # CORS configuré uniquement au niveau global du Gateway
       globalcors:
         cors-configurations:
           '[/**]':
             allowed-origins: "http://localhost:3000"
-            allowed-methods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
+            allowed-methods: "*"
             allowed-headers: "*"
             allow-credentials: true
-      routes:
-        - id: patient-service
-          uri: lb://ESANTE-PATIENT-SERVICE
-          predicates:
-            - Path=/api/patients/**,/patients/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
-            
-        - id: consultation-service
-          uri: lb://ESANTE-CONSULTATION-SERVICE
-          predicates:
-            - Path=/api/consultations/**,/consultations/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
-            
-        - id: auth-service
-          uri: lb://ESANTE-AUTHENTIFICATION-SERVICE
-          predicates:
-            - Path=/api/auth/**,/auth/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
-            
-        - id: laboratoire-service
-          uri: lb://ESANTE-LABORATOIRE-SERVICE
-          predicates:
-            - Path=/api/analyses/**,/analyses/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
-            
-        - id: facturation-service
-          uri: lb://ESANTE-FACTURATION-SERVICE
-          predicates:
-            - Path=/api/factures/**,/factures/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
-
-        - id: notification-service
-          uri: lb://ESANTE-NOTIFICATION-SERVICE
-          predicates:
-            - Path=/api/notifications/**,/notifications/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
-
-        - id: statistique-service
-          uri: lb://ESANTE-STATISTIQUE-SERVICE
-          predicates:
-            - Path=/api/statistiques/**,/statistiques/**
-          filters:
-            - StripPrefix=1
-            - name: DedupeResponseHeader
-              args:
-                name: Access-Control-Allow-Origin
-                strategy: RETAIN_UNIQUE
+            max-age: 3600
 
 eureka:
   client:

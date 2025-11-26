@@ -25,3 +25,6 @@ management:
     web:
       exposure:
         include: "*"
+
+# Désactiver CORS au niveau du service - laisser le Gateway gérer CORS
+# Le Gateway sera le seul point d'entrée avec CORS configuré
